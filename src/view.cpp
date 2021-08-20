@@ -1,42 +1,42 @@
 #include "view.hpp"
 
-View::View(const unsigned WIDTH, const unsigned HEIGHT)
+View::View(const int WIDTH, const int HEIGHT)
     : WIDTH(WIDTH), HEIGHT(HEIGHT), window(sf::VideoMode(WIDTH, HEIGHT), "Sorting visualization") {
-  window.setFramerateLimit(this->FRAME_RATE);
+  window.setFramerateLimit(FRAME_RATE);
 }
 
-void View::delay(unsigned time) const {
+void View::delay(int time) const {
   sf::sleep(sf::milliseconds(time));
 }
 
-void View::draw(const Model &model) {
-  float width = static_cast<float>(this->WIDTH) / model.size();
+void View::draw(const Model& model) {
+  float width = static_cast<float>(WIDTH) / model.size();
   for (size_t i = 0; i < model.size(); i++) {
-    float height = this->HEIGHT * model[i].heightAsPercentage();
+    float height = HEIGHT * model[i].heightAsPercentage();
     sf::RectangleShape rect({width, height});
-    rect.setPosition({i * width, this->HEIGHT - height});
+    rect.setPosition({i * width, HEIGHT - height});
     if (model[i].isHighlighted())
       rect.setFillColor(sf::Color::Red);
     else
       rect.setFillColor(sf::Color::Black);
-    this->window.draw(rect);
+    window.draw(rect);
   }
 }
 
-void View::updateScreen(const Model &model) {
-  this->window.clear(sf::Color::White);
-  this->draw(model);
-  this->window.display();
+void View::updateScreen(const Model& model) {
+  window.clear(sf::Color::White);
+  draw(model);
+  window.display();
 }
 
-bool View::getEvent(sf::Event &event) {
-  return this->window.pollEvent(event);
+bool View::getEvent(sf::Event& event) {
+  return window.pollEvent(event);
 }
 
 bool View::isWindowOpened() const {
-  return this->window.isOpen();
+  return window.isOpen();
 }
 
 void View::closeWindow() {
-  this->window.close();
+  window.close();
 }

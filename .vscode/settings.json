@@ -62,4 +62,12 @@
   "workbench.colorTheme": "Default Dark+",
   "terminal.integrated.fontSize": 18,
   "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "formatFiles.excludedFolders": [
+    "node_modules",
+    ".vscode",
+    ".git",
+    "dist",
+    ".chrome",
+    "build",
+  ]
 }

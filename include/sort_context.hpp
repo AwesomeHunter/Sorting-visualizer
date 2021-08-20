@@ -14,5 +14,5 @@ private:
 
 public:
   void setStrategy(std::unique_ptr<SortStrategy> newStrategy);
-  void sort(Model &model, Controller &controller);
+  void sort(Model& model, Controller& controller);
 };

@@ -1,8 +1,8 @@
 #include "algorithms/bubble_sort.hpp"
 #include "controller.hpp"
 
-void BubbleSort::sort(Model &model, Controller &controller) const {
-  unsigned changes = 1;
+void BubbleSort::sort(Model& model, Controller& controller) const {
+  int changes = 1;
   while (changes > 0) {
     changes = 0;
     for (size_t i = 0; i < model.size() - 1; i++) {
@@ -10,7 +10,9 @@ void BubbleSort::sort(Model &model, Controller &controller) const {
         changes++;
         std::swap(model[i], model[i + 1]);
       }
-      HIGHLIGHT_COMPARED_AND_UPDATE(model[i], model[i + 1], controller);
+      if (!controller.isAlgorithmRunning())
+        return;
+      highlightAndUpdate(model, controller, {i, i + 1});
     }
   }
 }

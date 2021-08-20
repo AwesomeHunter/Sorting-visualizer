@@ -1,22 +1,16 @@
 #pragma once
 
 #include "../model.hpp"
-
-#define HIGHLIGHT_COMPARED_AND_UPDATE(first, second, controller) \
-  if (!controller.isAlgorithmRunning())                          \
-    return;                                                      \
-  first.highlight();                                             \
-  second.highlight();                                            \
-  controller.update();                                           \
-  first.unhighlight();                                           \
-  second.unhighlight();
+#include <initializer_list>
 
 class Controller;
 
 class SortStrategy {
+protected:
+  void highlightAndUpdate(Model& model, Controller& controller, std::initializer_list<size_t> indexes) const;
 
 public:
   SortStrategy() = default;
-  virtual void sort(Model &model, Controller &controller) const = 0;
+  virtual void sort(Model& model, Controller& controller) const = 0;
   virtual ~SortStrategy() = default;
 };
