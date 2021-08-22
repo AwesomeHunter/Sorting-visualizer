@@ -11,14 +11,10 @@ add_compile_options(
     -Wformat-security
     -Wduplicated-cond
     -Wfloat-equal
-    #-Wconversion
     -Wlogical-not-parentheses
     -Wnull-dereference
     -Wvla
     -fstack-protector-strong
-    # -fsanitize=undefined
-    # -fno-sanitize-recover
-    # -fno-omit-frame-pointer
     -Wunreachable-code
     -Wundef
 )
